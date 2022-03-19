@@ -62,5 +62,13 @@ function calculateText(number, random){
     if(number === random) {
         return "Felicidades, has acertado!!"
     }
-    
+
+    if(number > random){
+        return "Mi numero es MENOR"
+    }
+
+    if(number < random){
+        return "Mi numero es MAYOR"
+    }
+
 }

@@ -4,3 +4,65 @@
     align-items:center;
     margin: 16px;
 }
+
+.Game input{
+    background-color: rgb(49, 150, 153);
+    border-radius:8px;
+    color:rgb(255, 106, 6);
+    text-align: center;
+    width: 120px;
+    height:120px;
+    font-size:90px;
+}
+
+.Game button{
+    background-color: rgb(95, 95, 95);
+    border: none;
+    color:rgb(185, 183, 23);
+    padding: 16px 32px;
+    padding: 16px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 120px;
+    width: 150px;
+}
+
+.Game h2{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    color: rgb(0, 167, 50);
+}
+
+.flickering {
+    animation-name: flicker;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 0s;
+
+    -webkit-animation-name: flicker;
+    -webkit-animation-duration: .3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 3;
+}
+
+@-moz-keyframes flicker{  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+  
+@-webkit-keyframes flicker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+  
+@keyframes flicker {  
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}

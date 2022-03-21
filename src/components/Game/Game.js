@@ -15,6 +15,10 @@ class Game extends Component {
         const {target: {value}} = e;
         console.log(value);
 
+        if(e.keyCode === 13){
+            e.preventDefault();
+        }
+
         if (value.trim() > 0)
         {
             this.setState({
@@ -22,23 +26,35 @@ class Game extends Component {
             });
         }
 
+        this.setState({
+            message: "",
+        })
+
     }
 
     handleOnClick = () => {
         const number = parseInt(this.state.number);
         const random = parseInt(this.state.random);
+        const text = calculateText(number, random);
         console.log(random);
 
-        const text = calculateText(number, random);
-
-        this.setState({
-            message: text
-        })
+        if(number !== random){
+            this.setState({
+                number: "",
+                message: text
+            })
+        }
+        else{
+            this.setState({
+                message: text
+            })
+        }
     }
 
     render() {
         return (
             <div className="Game">
+                <p>Adivina el número que estoy pensando entre el 1 - 100</p>
                 <input
                     type="number"
                     value = {this.state.number}
@@ -46,7 +62,7 @@ class Game extends Component {
                 />
 
                 <button onClick={this.handleOnClick}>Probar</button>
-                <p>{this.state.message}</p>
+                <h2 className={(this.state.message)&& ('flickering')}>{this.state.message}</h2>
             </div>
         );
     }
@@ -59,16 +75,29 @@ function generateRandomNumber(max, min=1) {
 }
 
 function calculateText(number, random){
+    const soClose = 5;
+    const dif = Math.abs(random - number);
+
     if(number === random) {
         return "Felicidades, has acertado!!"
     }
 
-    if(number > random){
-        return "Mi numero es MENOR"
+    if(dif < soClose){
+
+        if(number < random){
+            return "Estás muy cerca!! Tu número es un POCO BAJO"
+        }
+        else{
+            return "Estás muy cerca!! Tu número es un POCO ALTO"
+        }
     }
 
-    if(number < random){
-        return "Mi numero es MAYOR"
+    else{
+        if(number < random){
+            return "Tu numero es MUY BAJO!"
+        }
+        else{
+            return "Tu numero es MUY ALTO!"
+        }
     }
-
 }

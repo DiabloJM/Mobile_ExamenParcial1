@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Game.css';
+import List from './List.js';
 
 class Game extends Component {
     constructor() {
@@ -7,7 +8,11 @@ class Game extends Component {
         this.state = {
             number: "",
             message: "",
-            random: generateRandomNumber(100)
+            random: generateRandomNumber(100),
+            attempts: 0,
+            attemptList: [{
+                attemptNumber: ""
+            }]
         }
     }
 
@@ -36,17 +41,28 @@ class Game extends Component {
         const number = parseInt(this.state.number);
         const random = parseInt(this.state.random);
         const text = calculateText(number, random);
+        let newAttempts= this.state.attempts + 1;
         console.log(random);
+
+        this.setState({
+            attempts: newAttempts,
+            attemptList:[
+                ...this.state.attemptList,
+                {
+                    attemptNumber: number
+                }
+            ]
+        })
 
         if(number !== random){
             this.setState({
                 number: "",
-                message: text
+                message: text,
             })
         }
         else{
             this.setState({
-                message: text
+                message: text,
             })
         }
     }
@@ -62,7 +78,11 @@ class Game extends Component {
                 />
 
                 <button onClick={this.handleOnClick}>Probar</button>
-                <h2 className={(this.state.message)&& ('flickering')}>{this.state.message}</h2>
+                <h1 className={(this.state.message)&& ('flickering')}>{this.state.message}</h1>
+                <h2 className={this.state.attempts}>Intentos: {this.state.attempts}</h2>
+                <List
+                    attempts={this.state.attemptList}
+                />
             </div>
         );
     }

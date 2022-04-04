@@ -30,11 +30,18 @@
     width: 150px;
 }
 
-.Game h2{
-    font-size: 40px;
+.Game h1{
+    font-size: 45px;
     font-weight: bold;
     margin: 0;
     color: rgb(0, 167, 50);
+}
+
+.Game h2{
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  color: rgb(75, 104, 237);
 }
 
 .flickering {
